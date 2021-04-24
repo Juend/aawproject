@@ -8,6 +8,7 @@ package dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -18,6 +19,15 @@ public class CompteDAOImpl implements CompteDAO {
     @PersistenceContext(unitName="ComptePU")
     private EntityManager em; 
     
+        public EntityManager getEm(){
+        return em; 
+    }
+    
+    public void setEm(EntityManager em){
+        this.em = em; 
+    }
+    
+    
     @Override
     public void save(CompteEntity c) {
         c = em.merge(c);
@@ -26,22 +36,24 @@ public class CompteDAOImpl implements CompteDAO {
 
     @Override
     public void update(CompteEntity c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.merge(c);
     }
 
     @Override
     public void delete(CompteEntity c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        c = em.merge(c);
+        em.remove(c);
     }
 
     @Override
     public CompteEntity find(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.find(CompteEntity.class,id);
     }
 
     @Override
     public List<CompteEntity> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Query q = em.createQuery("SELECT c FROM CompteEntity c");
+        return q.getResultList();
     }
     
 }
