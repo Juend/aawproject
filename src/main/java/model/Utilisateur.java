@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Utilisateur {
     private String login;
     private String pass;
+    
     public Utilisateur(String login, String pass) {
         this.login = login;
         this.pass = pass;

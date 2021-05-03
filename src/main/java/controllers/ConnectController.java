@@ -92,5 +92,33 @@ public class ConnectController {
         return mv;        
     }
     
+    @RequestMapping(value="index", method = RequestMethod.POST)
+    public ModelAndView handleIndex(HttpServletRequest request,HttpServletResponse response) 
+    throws Exception 
+    { 
+        String login = request.getParameter("login");
+        String pass = request.getParameter("password");
+        if (!login.equals("") && !pass.equals(""))
+        {
+            UtilisateurEntity u = uService.findUserLogin(login);
+            if (u==null)
+            {
+                uService.addUser(new UtilisateurEntity(login,pass));
+                ModelAndView mv = new ModelAndView("index");
+                mv.addObject("infoMessage2","<div class=\"alert alert-success\" role=\"alert\">Enjoy !</div>");
+                System.out.println(uService.getUsers());
+                return mv;
+            }
+            else
+            {
+                ModelAndView mv = new ModelAndView("index");
+                mv.addObject("infoMessage2","<div class=\"alert alert-primary\" role=\"alert\">This login is already used !</div>");
+                return mv;
+            }
+        }
+        ModelAndView mv = new ModelAndView("index");
+        mv.addObject("infoMessage2","<div class=\"alert alert-danger\" role=\"alert\"> Uncompleted fields !</div>");
+        return mv;        
+    }
     
 }
