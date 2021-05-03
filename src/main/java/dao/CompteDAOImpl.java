@@ -16,7 +16,7 @@ import javax.persistence.Query;
  */
 public class CompteDAOImpl implements CompteDAO {
 
-    @PersistenceContext(unitName="ComptePU")
+    @PersistenceContext(unitName="ProjetBanquePU")
     private EntityManager em; 
     
         public EntityManager getEm(){

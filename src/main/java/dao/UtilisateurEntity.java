@@ -7,16 +7,24 @@ package dao;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  *
  * @author Justine ENOND
  */
 @Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="typeUtilisateur",discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorValue("Utilisateur")
 public class UtilisateurEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,16 +44,12 @@ public class UtilisateurEntity implements Serializable {
     @Column
     private String password;
     
-    public enum typeUtilisateur{PROFESSIONEL, PARTICULIER}
-    @Column
-    private typeUtilisateur type;
 
-    public UtilisateurEntity(String nom, String prenom, String login, String password,typeUtilisateur type) {
+    public UtilisateurEntity(String nom, String prenom, String login, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.login = login;
         this.password = password;
-        this.type = type;
     }
 
     public UtilisateurEntity(String login, String password) {
@@ -53,7 +57,6 @@ public class UtilisateurEntity implements Serializable {
         this.prenom = " ";
         this.login = login;
         this.password = password;
-        this.type = typeUtilisateur.PARTICULIER;
     }
     
     public UtilisateurEntity() {
@@ -94,15 +97,6 @@ public class UtilisateurEntity implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public typeUtilisateur getType() {
-        return type;
-    }
-
-    public void setType(typeUtilisateur type) {
-        this.type = type;
-    }
-
     
     public Long getId() {
         return id;

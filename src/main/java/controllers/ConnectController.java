@@ -28,97 +28,11 @@ public class ConnectController {
     @Autowired
     private UtilisateurService uService;
     
-    @RequestMapping(value="index", method = RequestMethod.GET)
-    public String initIndex(){
-	return "index";
+    @RequestMapping(value="sign", method=RequestMethod.GET)
+    String initSign()
+    {
+        return "sign";
     }
-    @RequestMapping(value="wall*", method = RequestMethod.GET)
-    public ModelAndView initWall(HttpServletRequest request){
-	HttpSession session = request.getSession(false);
-        if (session!=null)
-        {
-            Utilisateur u = (Utilisateur)session.getAttribute("user");
-            String login = u.getLogin();
-            ModelAndView mv = new ModelAndView("wall");
-            String bienvenu = "Bienvenu "+login;
-            mv.addObject("helloMessage",bienvenu);
-            return mv;
-        }
-        else
-        {
-            ModelAndView mv = new ModelAndView("index");
-            mv.addObject("infoMessage1","<div class=\"alert alert-danger\" role=\"alert\"> Session problem !</div>");
-            return mv;       
-        }
-    }
-    
-    @RequestMapping(value="wall", method = RequestMethod.POST)
-    public ModelAndView handleWall(HttpServletRequest request,HttpServletResponse response) 
-    throws Exception 
-    { 
-        String login = request.getParameter("login");
-        String pass = request.getParameter("password");
-        if (!login.equals("") && !pass.equals(""))
-        {
-            HttpSession session = request.getSession(true);
-            if (session!=null)
-            {
-                UtilisateurEntity u = uService.getUser(new UtilisateurEntity(login,pass));
-                if (u!=null)
-                {
-                    session.setAttribute("user",u);
-                    ModelAndView mv = new ModelAndView("wall");
-                    String bienvenu = "Bienvenu "+login;
-                   
-                    mv.addObject("helloMessage",bienvenu);
-                    return mv;
-                }
-                else
-                {
-                    ModelAndView mv = new ModelAndView("index");
-                    mv.addObject("infoMessage", "<div class=\"alert alert-primary\" role=\"alert\"> Erreur login / password</div>");
-                    return mv;
-                }
-            }
-            else
-            {
-                ModelAndView mv = new ModelAndView("index");
-                mv.addObject("infoMessage1","<div class=\"alert alert-danger\" role=\"alert\"> Session problem !</div>");
-                return mv;  
-            }
-        }
-        ModelAndView mv = new ModelAndView("index");
-        mv.addObject("infoMessage","<div class=\"alert alert-primary\" role=\"alert\"> champs incomplets !</div>");
-        return mv;        
-    }
-    
-    @RequestMapping(value="index", method = RequestMethod.POST)
-    public ModelAndView handleIndex(HttpServletRequest request,HttpServletResponse response) 
-    throws Exception 
-    { 
-        String login = request.getParameter("login");
-        String pass = request.getParameter("password");
-        if (!login.equals("") && !pass.equals(""))
-        {
-            UtilisateurEntity u = uService.findUserLogin(login);
-            if (u==null)
-            {
-                uService.addUser(new UtilisateurEntity(login,pass));
-                ModelAndView mv = new ModelAndView("index");
-                mv.addObject("infoMessage2","<div class=\"alert alert-success\" role=\"alert\">Enjoy !</div>");
-                System.out.println(uService.getUsers());
-                return mv;
-            }
-            else
-            {
-                ModelAndView mv = new ModelAndView("index");
-                mv.addObject("infoMessage2","<div class=\"alert alert-primary\" role=\"alert\">This login is already used !</div>");
-                return mv;
-            }
-        }
-        ModelAndView mv = new ModelAndView("index");
-        mv.addObject("infoMessage2","<div class=\"alert alert-danger\" role=\"alert\"> Uncompleted fields !</div>");
-        return mv;        
-    }
+
     
 }

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
  */
 public class ConseillerDAOImpl implements ConseillerDAO {
 
-    @PersistenceContext(unitName="ConseillerPU")
+    @PersistenceContext(unitName="ProjetBanquePU")
     private EntityManager em; 
     
     public EntityManager getEm(){

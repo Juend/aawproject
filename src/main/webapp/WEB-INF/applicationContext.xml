@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
    
-    <bean id="BanqueDataSource"
+    <bean id="ProjetBanqueDataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>
         <property name="url" value="jdbc:derby://localhost:1527/Banque"/>
@@ -24,8 +24,8 @@
     
     <bean id="entityManagerFactory"
         class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="BanqueJPAPU"/>
-        <property name="dataSource" ref="BanqueDataSource"/>
+        <property name="persistenceUnitName" value="ProjetBanquePU"/>
+        <property name="dataSource" ref="ProjetBanqueDataSource"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="databasePlatform"
