@@ -6,82 +6,80 @@
 package dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Justine ENOND
  */
 @Entity
-public class CompteEntity implements Serializable {
+public class MessageConseillerUtilisateurEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column 
-    private float solde; 
+    @Column
+    private String message; 
     
-    
-    @Column 
-    private typeCompte type; 
-    
-    @Column 
-    private static  final float plafond = 1500.f; 
+    @Column
+    private String logExp;
     
     @Column 
-    private static final float taux = 0.5f;
+    private String logDest; 
     
-    @ManyToOne
-    @JoinColumn(name="user_fk")
-    private UtilisateurEntity user;
-
-    public CompteEntity() {
-        this.solde = 0.f;
-        this.type = typeCompte.COURANT; 
-    }
+    @Column
+    private final Date date_envoi; 
     
-    public CompteEntity(float solde, typeCompte type) {
-        this.solde = solde;
-        this.type = type; 
+    public MessageConseillerUtilisateurEntity(String msg, String logExp, String logDest){
+        this.message = msg;
+        this.logExp = logExp;
+        this.logDest = logDest; 
+        this.date_envoi = new Date();
     }
 
-    public float getSolde() {
-        return solde;
+    public String getMessage() {
+        return message;
     }
 
-    public void setSolde(float solde) {
-        this.solde = solde;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public typeCompte getType() {
-        return type;
+    public String getLogExp() {
+        return logExp;
     }
 
-    public void setType(typeCompte type) {
-        this.type = type;
+    public void setLogExp(String logExp) {
+        this.logExp = logExp;
     }
 
+    public String getLogDest() {
+        return logDest;
+    }
+
+    public void setLogDest(String logDest) {
+        this.logDest = logDest;
+    }
+
+    public Date getDateenvoi(){
+        return this.date_envoi;
+    }
     
     public Long getId() {
         return id;
     }
 
-    public UtilisateurEntity getUtilisateur(){
-        return this.user;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setUtilisateur(UtilisateurEntity u){
-        this.user = u; 
-    }
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -92,10 +90,10 @@ public class CompteEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CompteEntity)) {
+        if (!(object instanceof MessageConseillerUtilisateurEntity)) {
             return false;
         }
-        CompteEntity other = (CompteEntity) object;
+        MessageConseillerUtilisateurEntity other = (MessageConseillerUtilisateurEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -104,7 +102,7 @@ public class CompteEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.CompteEntity[ id=" + id + " ]";
+        return "dao.MessageConseillerUtilisateur[ id=" + id + " ]";
     }
     
 }

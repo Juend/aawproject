@@ -24,6 +24,7 @@ public interface UtilisateurService {
     // Methode qui renvoi un utilisateur selon son login
     public UtilisateurEntity findUserLogin(String login);
     
+    
     public List<UtilisateurEntity> getUsers();
     
     // Méthode pour supprimer un utilisateur

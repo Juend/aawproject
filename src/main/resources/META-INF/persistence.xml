@@ -6,6 +6,8 @@
     <class>dao.CompteEntity</class>
     <class>dao.UtilisateurParticulier</class>
     <class>dao.UtilisateurProfessionel</class>
+    <class>dao.OperationCompteEntity</class>
+    <class>dao.MessageConseillerUtilisateurEntity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Banque"/>

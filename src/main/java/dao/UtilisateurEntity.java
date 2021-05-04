@@ -6,6 +6,8 @@
 package dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -16,6 +18,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -44,6 +48,8 @@ public class UtilisateurEntity implements Serializable {
     @Column
     private String password;
     
+    @OneToMany(mappedBy="user")
+    private List<CompteEntity> comptes = new ArrayList<CompteEntity>();
 
     public UtilisateurEntity(String nom, String prenom, String login, String password) {
         this.nom = nom;
@@ -102,10 +108,20 @@ public class UtilisateurEntity implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public List<CompteEntity> getComptes(){
+        return this.comptes;
     }
 
+    public void setComptes(List<CompteEntity> comptes)
+    {
+        this.comptes = comptes;
+    }
+    
+    public void addCompte(CompteEntity compte)
+    {
+        this.comptes.add(compte);
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

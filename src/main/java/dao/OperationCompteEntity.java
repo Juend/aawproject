@@ -17,34 +17,27 @@ import javax.persistence.Id;
  * @author Justine ENOND
  */
 @Entity
-public class ConseillerEntity implements Serializable {
+public class OperationCompteEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     
     @Column 
-    private String nom; 
+    private String type_operation; 
     
     @Column 
-    private String prenom;
+    private String actionnaire;
     
+    @Column 
+    private String beneficiaire;
+    
+    @Column 
+    private float somme;
     
     
 
-    public ConseillerEntity() {
-        this.nom = "";
-        this.prenom = "";
-    }
-    
-    public ConseillerEntity(String nom, String prenom) {
-        this.nom = nom;
-        this.prenom = prenom;
-    }
-    
-    
     public Long getId() {
         return id;
     }
@@ -53,23 +46,6 @@ public class ConseillerEntity implements Serializable {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -80,10 +56,10 @@ public class ConseillerEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ConseillerEntity)) {
+        if (!(object instanceof OperationCompteEntity)) {
             return false;
         }
-        ConseillerEntity other = (ConseillerEntity) object;
+        OperationCompteEntity other = (OperationCompteEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -92,7 +68,7 @@ public class ConseillerEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.ConseillerEntity[ id=" + id + " ]";
+        return "dao.OperationCompteEntity[ id=" + id + " ]";
     }
     
 }
