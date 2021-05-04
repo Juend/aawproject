@@ -22,32 +22,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-              
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="acceuil.htm">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                      <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>
-                  </ul>
-                  <ul class="navbar-nav   my-lg-0">
-                  <li class="nav-item dropdown my-2 my-lg-0">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Compte
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="disconnect.htm">Deconnexion</a>
-                    </div>
-                  </li>
-                </ul>
-                </div>
-              </nav>
+            </nav>
         </header>
         <div class ="col-6">
 
@@ -64,7 +39,7 @@
                                 <div class="form-group row">
                                     <label for="Radio_compte" class="col-sm-5 col-form-label">Vous etes un : </label>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="Radio_compte" id="Radio_utilisateur" value="Utilisateur">
+                                        <input class="form-check-input" type="radio" name="Radio_compte" id="Radio_utilisateur" value="Utilisateur" checked>
                                         <label class="form-check-label" for="Radio_utilisateur">Utilisateur</label>
                                       </div>
                                     <div class="form-check form-check-inline">
@@ -84,10 +59,12 @@
                                         <input type="text" class="form-control" id="password" name="password" placeholder="Mot de passe">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary" value="OK">Submit</button>
-                            </form>
-                         <h2>${connectMessage}</h2>
+                                <button type="submit" class="btn btn-primary" value="OK">Soumettre</button>
+                            </form>                            
                         </div>
+                    </div>
+                    <div class= "card-footer">
+                        <div class="alert alert-danger" role="alert">${connectMessage}</div>
                     </div>
                 </div>
             </div>
@@ -97,33 +74,60 @@
                         <h5 class="card-title">Creer votre compte: </h5>
                     </div>
                     <div class="card-body">
-                        <form method="POST" ACTION="signIn.htm">
-                            <div class="form-group row">
-                                <label for="Radio_nouveau_compte" class="col-sm-5 col-form-label">Vous etes un nouvel : </label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="Radio_nouveau_compte" id="Radio_nouveau_utilisateur" value="Utilisateur">
-                                    <label class="form-check-label" for="Radio_nouveau_utilisateur">Utilisateur</label>
-                                  </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="Radio_nouveau_compte" id="Radio_nouveau_conseiller" value="Conseiller">
-                                    <label class="form-check-label" for="Radio_nouveau_conseiller">Conseiller</label>
+                        <div class = "card-text">
+                            <form method="POST" ACTION="signIn.htm">
+                                <div class="form-group row">
+                                    <label for="Radio_nouveau_compte" class="col-sm-5 col-form-label">Vous etes un nouvel : </label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="Radio_nouveau_compte" id="Radio_nouveau_utilisateur" value="Utilisateur" checked>
+                                        <label class="form-check-label" for="Radio_nouveau_utilisateur">Utilisateur</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="Radio_nouveau_compte" id="Radio_nouveau_conseiller" value="Conseiller">
+                                        <label class="form-check-label" for="Radio_nouveau_conseiller">Conseiller</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="login" class="col-sm-5 col-form-label">Entrez votre login : </label>
-                                <div class="col-sm-7">
-                                    <input type="text" class="form-control" id="login" name="login" placeholder="Login">
-                                </div> 
-                            </div>
-                            <div class="form-group row">
-                                <label for="password" class="col-sm-5 col-form-label">Entrez votre mot de passe : </label>
-                                <div class="col-sm-7">
-                                    <input type="text" class="form-control" id="password" name="password" placeholder="Mot de passe">
+                                <div class="form-group row type_utilisateur" id ="typeUtilisateur">
+                                    <label for="Radio_type_utilisateur" class="col-sm-5 col-form-label">Vous etes un : </label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="Radio_type_utilisateur" id="Radio_particulier" value="Particulier" checked>
+                                        <label class="form-check-label" for="Radio_particulier">Particulier</label>
+                                      </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="Radio_type_utilisateur" id="Radio_professionnel" value="Professionnel">
+                                        <label class="form-check-label" for="Radio_professionnel">Professionnel</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary" value="OK">Submit</button> 
-                        </form>
-                         <h2>${submitMessage}</h2>
+                                <div class="form-group row">
+                                    <label for="nom" class="col-sm-5 col-form-label">Nom : </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="nom" name="nom" >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="prenom" class="col-sm-5 col-form-label">Prenom : </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="prenom" name="prenom" >
+                                    </div> 
+                                </div>
+                                <div class="form-group row">
+                                    <label for="login" class="col-sm-5 col-form-label">Login : </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="login" name="login" >
+                                    </div> 
+                                </div>
+                                <div class="form-group row">
+                                    <label for="password" class="col-sm-5 col-form-label">Mot de passe : </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="password" name="password" >
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" value="OK">Soumettre</button> 
+                            </form>
+                        </div>                        
+                    </div>
+                    <div class= "card-footer">
+                        <div class="alert alert-danger" role="alert">${submitMessage}</div>
                     </div>
                 </div>
             </div>
@@ -132,6 +136,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('input[name="Radio_nouveau_compte"]').click(function() {
+                if($(this).attr('id') == 'Radio_nouveau_utilisateur') {
+                        $('#typeUtilisateur').show();           
+                }
+
+                else {
+                        $('#typeUtilisateur').hide();   
+                }
+            });
+        });
+    </script>
     </body>
 </html>
-

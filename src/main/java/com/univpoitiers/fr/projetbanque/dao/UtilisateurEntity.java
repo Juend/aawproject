@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package com.univpoitiers.fr.projetbanque.dao;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -47,6 +47,10 @@ public class UtilisateurEntity implements Serializable {
     
     @Column
     private String password;
+    
+    @Column
+    private List<MessageConseillerUtilisateurEntity> messages= new ArrayList<MessageConseillerUtilisateurEntity>(); 
+    
     
     @OneToMany(mappedBy="user")
     private List<CompteEntity> comptes = new ArrayList<CompteEntity>();
@@ -120,6 +124,14 @@ public class UtilisateurEntity implements Serializable {
     public void addCompte(CompteEntity compte)
     {
         this.comptes.add(compte);
+    }
+    
+    public void addMessage(MessageConseillerUtilisateurEntity m){
+        this.messages.add(m);
+    }
+    
+    public List<MessageConseillerUtilisateurEntity> getMessages(){
+        return this.messages; 
     }
     
     @Override

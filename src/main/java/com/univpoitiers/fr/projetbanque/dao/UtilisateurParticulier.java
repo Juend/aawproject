@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package com.univpoitiers.fr.projetbanque.dao;
 
 import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
@@ -17,13 +17,13 @@ import javax.persistence.Id;
  * @author Justine ENOND
  */
 @Entity
-@DiscriminatorValue("UtilisateurProfessionel")
-public class UtilisateurProfessionel extends UtilisateurEntity{
+@DiscriminatorValue("UtilisateurParticulier")
+public class UtilisateurParticulier extends UtilisateurEntity{
 
-    public UtilisateurProfessionel(){
+    public UtilisateurParticulier(){
         super();
     }
-    public UtilisateurProfessionel(String nom, String prenom, String login, String password) {
+    public UtilisateurParticulier(String nom, String prenom, String login, String password) {
         super(nom,prenom,login,password);
     }
     

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package com.univpoitiers.fr.projetbanque.dao;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -11,15 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Justine ENOND
  */
 @Entity
-public class CompteEntity implements Serializable {
+public class OperationCompteEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -27,61 +25,27 @@ public class CompteEntity implements Serializable {
     private Long id;
     
     @Column 
-    private float solde; 
-    
-    
-    @Column 
-    private typeCompte type; 
+    private String type_operation; 
     
     @Column 
-    private static  final float plafond = 1500.f; 
+    private String actionnaire;
     
     @Column 
-    private static final float taux = 0.5f;
+    private String beneficiaire;
     
-    @ManyToOne
-    @JoinColumn(name="user_fk")
-    private UtilisateurEntity user;
-
-    public CompteEntity() {
-        this.solde = 0.f;
-        this.type = typeCompte.COURANT; 
-    }
+    @Column 
+    private float somme;
     
-    public CompteEntity(float solde, typeCompte type) {
-        this.solde = solde;
-        this.type = type; 
-    }
-
-    public float getSolde() {
-        return solde;
-    }
-
-    public void setSolde(float solde) {
-        this.solde = solde;
-    }
-
-    public typeCompte getType() {
-        return type;
-    }
-
-    public void setType(typeCompte type) {
-        this.type = type;
-    }
-
     
+
     public Long getId() {
         return id;
     }
 
-    public UtilisateurEntity getUtilisateur(){
-        return this.user;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setUtilisateur(UtilisateurEntity u){
-        this.user = u; 
-    }
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -92,10 +56,10 @@ public class CompteEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CompteEntity)) {
+        if (!(object instanceof OperationCompteEntity)) {
             return false;
         }
-        CompteEntity other = (CompteEntity) object;
+        OperationCompteEntity other = (OperationCompteEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -104,7 +68,7 @@ public class CompteEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.CompteEntity[ id=" + id + " ]";
+        return "dao.OperationCompteEntity[ id=" + id + " ]";
     }
     
 }

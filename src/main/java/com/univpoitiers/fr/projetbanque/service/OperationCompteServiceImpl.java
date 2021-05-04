@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package com.univpoitiers.fr.projetbanque.service;
 
 /**
  *
  * @author Justine ENOND
  */
-public enum typeCompte {COURANT, PEL,EPARGNE};
-
+public class OperationCompteServiceImpl implements OperationCompteService {
+    
+}

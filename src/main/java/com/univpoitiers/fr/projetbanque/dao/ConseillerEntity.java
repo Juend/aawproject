@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package com.univpoitiers.fr.projetbanque.dao;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,9 +38,8 @@ public class ConseillerEntity implements Serializable {
     private String login; 
     
     @Column
-    private String mdp; 
+    private String password; 
     
-    @OneToMany(mappedBy="conseillerEntity")
     @Column
     private List<MessageConseillerUtilisateurEntity> messages= new ArrayList<MessageConseillerUtilisateurEntity>(); 
     
@@ -50,14 +49,14 @@ public class ConseillerEntity implements Serializable {
         this.nom = "";
         this.prenom = "";
         this.login = ""; 
-        this.mdp = "";
+        this.password = "";
     }
     
     public ConseillerEntity(String login, String mdp) {
         this.nom = "";
         this.prenom = "";
         this.login = login; 
-        this.mdp = mdp;
+        this.password = mdp;
     }
 
     public String getLogin() {
@@ -68,19 +67,19 @@ public class ConseillerEntity implements Serializable {
         this.login = login;
     }
 
-    public String getMdp() {
-        return mdp;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
+    public void setPassword(String password) {
+        this.password = password;
     }
     
-    public ConseillerEntity(String nom, String prenom, String login, String mdp) {
+    public ConseillerEntity(String nom, String prenom, String login, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.login = login; 
-        this.mdp = mdp;
+        this.password = password;
     }
     
     

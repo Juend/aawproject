@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package com.univpoitiers.fr.projetbanque.service;
 
-import dao.UtilisateurDAO;
-import dao.UtilisateurEntity;
+import com.univpoitiers.fr.projetbanque.dao.UtilisateurDAO;
+import com.univpoitiers.fr.projetbanque.dao.UtilisateurEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
-import model.Utilisateur;
 import org.springframework.stereotype.Service;
 
 /**
