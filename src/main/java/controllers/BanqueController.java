@@ -77,6 +77,11 @@ public class BanqueController {
     {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+        
+        //TO DO
+        //Recuperer le radio si conseiller ou Utilisateur
+        //Envoyé sur la page correspondant selon type;
+        
         UtilisateurEntity u = uService.findUserLogin(login);
         if(u!=null){
             if(u.getPassword().equals(password)){

@@ -6,11 +6,14 @@
 package dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -31,17 +34,53 @@ public class ConseillerEntity implements Serializable {
     @Column 
     private String prenom;
     
+    @Column
+    private String login; 
+    
+    @Column
+    private String mdp; 
+    
+    @OneToMany(mappedBy="conseillerEntity")
+    @Column
+    private List<MessageConseillerUtilisateurEntity> messages= new ArrayList<MessageConseillerUtilisateurEntity>(); 
     
     
 
     public ConseillerEntity() {
         this.nom = "";
         this.prenom = "";
+        this.login = ""; 
+        this.mdp = "";
     }
     
-    public ConseillerEntity(String nom, String prenom) {
+    public ConseillerEntity(String login, String mdp) {
+        this.nom = "";
+        this.prenom = "";
+        this.login = login; 
+        this.mdp = mdp;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+    
+    public ConseillerEntity(String nom, String prenom, String login, String mdp) {
         this.nom = nom;
         this.prenom = prenom;
+        this.login = login; 
+        this.mdp = mdp;
     }
     
     
@@ -69,6 +108,13 @@ public class ConseillerEntity implements Serializable {
         this.prenom = prenom;
     }
 
+    public void addMessage(MessageConseillerUtilisateurEntity m){
+        this.messages.add(m);
+    }
+    
+    public List<MessageConseillerUtilisateurEntity> getMessages(){
+        return this.messages; 
+    }
     
     @Override
     public int hashCode() {
