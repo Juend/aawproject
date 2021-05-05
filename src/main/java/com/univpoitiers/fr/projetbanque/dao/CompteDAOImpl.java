@@ -9,11 +9,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Justine ENOND
  */
+@Repository
 public class CompteDAOImpl implements CompteDAO {
 
     @PersistenceContext(unitName="ProjetBanquePU")

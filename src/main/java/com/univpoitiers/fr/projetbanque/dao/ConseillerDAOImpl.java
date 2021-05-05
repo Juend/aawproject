@@ -9,13 +9,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Justine ENOND
  */
+@Repository
 public class ConseillerDAOImpl implements ConseillerDAO {
 
     @PersistenceContext(unitName="ProjetBanquePU")
@@ -29,38 +30,44 @@ public class ConseillerDAOImpl implements ConseillerDAO {
         this.em = em; 
     }
     
+    @Transactional
     @Override
     public void save(ConseillerEntity c) {
        c = em.merge(c);
        em.persist(c);
     }
 
+    @Transactional
     @Override
     public void update(ConseillerEntity c) {
         em.merge(c);
     }
 
+    @Transactional
     @Override
     public void delete(ConseillerEntity c) {
         c = em.merge(c);
         em.remove(c);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public ConseillerEntity find(long id) {
         return em.find(ConseillerEntity.class,id);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<ConseillerEntity> findAll() {
        Query q = em.createQuery("SELECT c FROM ConseillerEntity c");
         return q.getResultList(); 
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public List<ConseillerEntity> findByLogin(String nom) {
-        Query q = em.createQuery("SELECT c FROM ConseillerEntity c WHERE c.nom = ?")
-                .setParameter(1, nom);
+    public List<ConseillerEntity> findByLogin(String login) {
+        Query q = em.createQuery("SELECT c FROM ConseillerEntity c WHERE c.login = ?")
+                .setParameter(1, login);
         return q.getResultList();}
     
 }

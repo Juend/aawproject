@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface UtilisateurService {
     // Methode pour ajouter un utilisateur
-    public void addUser(UtilisateurEntity u);
+    public Boolean addUser(UtilisateurEntity u);
     
     // Méthode qui renvoi un utilisateur s'il existe (renvoi null sinon
     public UtilisateurEntity getUser(UtilisateurEntity u);
@@ -27,5 +27,5 @@ public interface UtilisateurService {
     public List<UtilisateurEntity> getUsers();
     
     // Méthode pour supprimer un utilisateur
-    public void removeUser(UtilisateurEntity u);
+    public Boolean removeUser(UtilisateurEntity u);
 }

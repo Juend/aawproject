@@ -9,11 +9,13 @@ import com.univpoitiers.fr.projetbanque.dao.ConseillerDAO;
 import com.univpoitiers.fr.projetbanque.dao.ConseillerEntity;
 import java.util.List;
 import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Justine ENOND
  */
+@Service("ConseillerService")
 public class ConseillerServiceImpl implements ConseillerService {
 
     @Resource

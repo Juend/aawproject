@@ -59,6 +59,12 @@ public class BanqueController {
         return "accueilbanque";
     }
     
+    @RequestMapping(value="accueilconseiller", method=RequestMethod.GET)
+    String initAcceuilconseiller()
+    {
+        return "accueilconseiller";
+    }
+    
     @RequestMapping(value="disconnect", method=RequestMethod.GET)
     String initDisconnect()
     {

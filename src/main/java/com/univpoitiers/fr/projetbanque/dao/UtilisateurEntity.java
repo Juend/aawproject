@@ -48,9 +48,9 @@ public class UtilisateurEntity implements Serializable {
     @Column
     private String password;
     
+    @OneToMany(mappedBy="userentity")
     @Column
-    private List<MessageConseillerUtilisateurEntity> messages= new ArrayList<MessageConseillerUtilisateurEntity>(); 
-    
+    private List<MessageConseillerUtilisateurEntity> messages; 
     
     @OneToMany(mappedBy="user")
     private List<CompteEntity> comptes = new ArrayList<CompteEntity>();
@@ -60,6 +60,7 @@ public class UtilisateurEntity implements Serializable {
         this.prenom = prenom;
         this.login = login;
         this.password = password;
+        this.messages = new ArrayList<>();
     }
 
     public UtilisateurEntity(String login, String password) {
@@ -67,6 +68,7 @@ public class UtilisateurEntity implements Serializable {
         this.prenom = " ";
         this.login = login;
         this.password = password;
+        this.messages = new ArrayList<>();
     }
     
     public UtilisateurEntity() {
@@ -74,6 +76,7 @@ public class UtilisateurEntity implements Serializable {
         this.prenom = " ";
         this.login = " ";
         this.password = " ";
+        this.messages = new ArrayList<>();
     }
 
     public String getNom() {

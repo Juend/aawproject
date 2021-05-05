@@ -5,10 +5,13 @@
  */
 package com.univpoitiers.fr.projetbanque.service;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author Justine ENOND
  */
+@Service("OperationCompteService")
 public class OperationCompteServiceImpl implements OperationCompteService {
     
 }

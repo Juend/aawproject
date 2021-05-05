@@ -16,16 +16,21 @@ import org.springframework.stereotype.Service;
  *
  * @author Justine ENOND
  */
-@Service
+@Service("UtilisateurService")
 public class UtilisateurServiceImpl implements UtilisateurService {
     
     @Resource
     UtilisateurDAO dao;
     
     @Override
-    public void addUser(UtilisateurEntity u)
+    public Boolean addUser(UtilisateurEntity u)
     {
-        dao.save(u);
+        if(dao.find(u.getId())== null){
+            dao.save(u);
+            return true; 
+        }
+        return false; 
+        
     }
     
     @Override
@@ -49,9 +54,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
     
     @Override
-    public void removeUser(UtilisateurEntity u)
+    public Boolean removeUser(UtilisateurEntity u)
     {
-        dao.delete(u);
+        if(dao.find(u.getId())!= null){
+            dao.delete(u);
+            return true; 
+        }
+        return false; 
+        
     }
 
     @Override
