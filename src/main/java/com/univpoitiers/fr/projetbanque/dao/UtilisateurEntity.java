@@ -48,8 +48,7 @@ public class UtilisateurEntity implements Serializable {
     @Column
     private String password;
     
-    @OneToMany(mappedBy="userentity")
-    @Column
+    @OneToMany(mappedBy="user")
     private List<MessageConseillerUtilisateurEntity> messages; 
     
     @OneToMany(mappedBy="user")

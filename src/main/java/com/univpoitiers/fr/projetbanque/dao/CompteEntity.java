@@ -6,6 +6,8 @@
 package com.univpoitiers.fr.projetbanque.dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -42,6 +45,17 @@ public class CompteEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name="user_fk")
     private UtilisateurEntity user;
+    
+    @ManyToOne
+    @JoinColumn(name="conseiller_fk")
+    private ConseillerEntity conseiller;
+
+    
+    
+    @OneToMany(mappedBy="compte")
+    private List<OperationCompteEntity> operations = new ArrayList<OperationCompteEntity>();
+
+    
 
     public CompteEntity() {
         this.solde = 0.f;
@@ -80,6 +94,35 @@ public class CompteEntity implements Serializable {
 
     public void setUtilisateur(UtilisateurEntity u){
         this.user = u; 
+    }
+    
+    public UtilisateurEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UtilisateurEntity user) {
+        this.user = user;
+    }
+    
+    public ConseillerEntity getConseiller() {
+        return conseiller;
+    }
+
+    public void setConseiller(ConseillerEntity conseiller) {
+        this.conseiller = conseiller;
+    }
+    
+    public List<OperationCompteEntity> getOperations() {
+        return operations;
+    }
+
+
+    public void addOperation(OperationCompteEntity operation){
+        this.operations.add(operation);
+    }
+    
+    public void setOperations(List<OperationCompteEntity> operations) {
+        this.operations = operations;
     }
     
     @Override

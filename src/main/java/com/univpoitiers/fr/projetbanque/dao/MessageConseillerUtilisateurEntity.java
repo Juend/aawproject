@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 /**
  *
@@ -36,6 +38,14 @@ public class MessageConseillerUtilisateurEntity implements Serializable {
     
     @Column
     private final Date date_envoi; 
+    
+    @ManyToOne
+    @JoinColumn(name="user_fk")
+    private UtilisateurEntity user; 
+    
+    @ManyToOne
+    @JoinColumn(name="conseiller_fk")
+    private ConseillerEntity conseiller; 
     
     public MessageConseillerUtilisateurEntity(String msg, String logExp, String logDest){
         this.message = msg;

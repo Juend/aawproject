@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -40,7 +42,11 @@ public class OperationCompteEntity implements Serializable {
     @Column
     private Date dateOp; 
 
-    
+    @ManyToOne
+    @JoinColumn(name="compte_fk")
+    private CompteEntity compte;
+
+   
 
     public OperationCompteEntity(String type_operation, String actionnaire, String beneficiaire, float somme) {
         this.type_operation = type_operation;
@@ -102,6 +108,14 @@ public class OperationCompteEntity implements Serializable {
         this.id = id;
     }
 
+    public CompteEntity getCompte() {
+        return compte;
+    }
+
+    public void setCompte(CompteEntity compte) {
+        this.compte = compte;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -40,11 +40,11 @@ public class ConseillerEntity implements Serializable {
     @Column
     private String password; 
     
-    @OneToMany(mappedBy="conseillerentity")
-    @Column
+    @OneToMany(mappedBy="conseiller")
     private List<MessageConseillerUtilisateurEntity> messages; 
     
-    
+    @OneToMany(mappedBy="conseiller")
+    private List<CompteEntity> comptes = new ArrayList<CompteEntity>();
 
     public ConseillerEntity() {
         this.nom = "";
@@ -117,6 +117,18 @@ public class ConseillerEntity implements Serializable {
     
     public List<MessageConseillerUtilisateurEntity> getMessages(){
         return this.messages; 
+    }
+
+    public List<CompteEntity> getComptes() {
+        return comptes;
+    }
+
+    public void setComptes(List<CompteEntity> comptes) {
+        this.comptes = comptes;
+    }
+    
+    public void addCompte(CompteEntity compte){
+        this.comptes.add(compte);
     }
     
     @Override
