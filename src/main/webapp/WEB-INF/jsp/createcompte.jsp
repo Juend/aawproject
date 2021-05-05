@@ -1,6 +1,6 @@
 <%-- 
-    Document   : acceuilbanque
-    Created on : 16 mars 2021, 17:57:33
+    Document   : createcompte
+    Created on : 5 mai 2021, 23:57:20
     Author     : Justine ENOND 
 --%>
 
@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <a class="nav-link" href="accueilbanque.htm">Accueil <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="accueil.htm">Accueil <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="affichagecomptes.htm">Comptes</a>
@@ -57,7 +57,7 @@
                     <div class="row justify-content-md-center m-t-25">
                         <div class="col-md-12 order-md-4 mb-8 ">
                             <div class="row justify-content-md-center m-t-25" >
-                                <h1 > Bienvenue ${utilisateurname} </h1>
+                                <h1 > Bienvenue ${Utilisateurname} </h1>
                             </div>
                             <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
                                 <div  class="col-md-8 order-md-4 mb-8 " >
@@ -72,7 +72,7 @@
                                         </li>
                                         <li class="list-group-item list-group-item-action list-group-item-light">
                                             Voir mes comptes
-                                            <form method="POST" ACTION="affichagecomptes.htm">
+                                            <form method="POST" ACTION="afficheCompte.htm">
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                         <span aria-hidden="true">></span>
                                                 </button>

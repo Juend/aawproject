@@ -28,4 +28,7 @@ public interface UtilisateurService {
     
     // Méthode pour supprimer un utilisateur
     public Boolean removeUser(UtilisateurEntity u);
+    
+    //Méthode pour afficher les comptes d'un utilisateur
+    public String printComptes(String login);
 }

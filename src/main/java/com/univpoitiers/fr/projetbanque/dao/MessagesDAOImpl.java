@@ -9,16 +9,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Justine ENOND
  */
 @Repository
-public class UtilisateurDAOImpl implements UtilisateurDAO{
-
+public class MessagesDAOImpl implements MessagesDAO {
     @PersistenceContext(unitName="ProjetBanquePU")
     private EntityManager em; 
     
@@ -29,46 +28,35 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
     public void setEm(EntityManager em){
         this.em = em; 
     }
-    
+
     @Transactional
     @Override
-    public void save(UtilisateurEntity u) {
-        u = em.merge(u);
-        em.persist(u);
+    public void save(MessageConseillerUtilisateurEntity msg) {
+       msg = em.merge(msg);
+       em.persist(msg);
     }
 
     @Transactional
     @Override
-    public void update(UtilisateurEntity u) {
-        em.merge(u);
+    public void update(MessageConseillerUtilisateurEntity msg) {
+        em.merge(msg);
     }
 
     @Transactional
     @Override
-    public void delete(UtilisateurEntity u) {
-        u = em.merge(u);
-        em.remove(u);
+    public void delete(MessageConseillerUtilisateurEntity msg) {
+        msg = em.merge(msg);
+        em.remove(msg);
     }
 
-    @Transactional
     @Override
-    public UtilisateurEntity find(long id) {
-        return em.find(UtilisateurEntity.class,id);
+    public MessageConseillerUtilisateurEntity find(long id) {
+        return em.find(MessageConseillerUtilisateurEntity.class,id);
     }
 
-    @Transactional
     @Override
-    public List<UtilisateurEntity> findAll() {
-        Query q = em.createQuery("SELECT u FROM UtilisateurEntity u");
+    public List<MessageConseillerUtilisateurEntity> findAll() {
+        Query q = em.createQuery("SELECT c FROM MessageConseillerUtilisateurEntity c");
         return q.getResultList();
     }
-
-    @Transactional
-    @Override
-    public List<UtilisateurEntity> findByLogin(String login) {
-        Query q = em.createQuery("SELECT u FROM UtilisateurEntity u WHERE u.login = :value")
-                .setParameter("value", login);
-        return q.getResultList();
-    }
-    
 }

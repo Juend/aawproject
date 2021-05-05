@@ -89,9 +89,9 @@ public class BanqueController {
             }else{
                 UtilisateurEntity u_;
                String type_Utilisateur = request.getParameter("Radio_type_utilisateur") ;
-                if(type_Compte.equals("Particulier")){
+                if(type_Utilisateur.equals("Particulier")){
                     u_ = new UtilisateurParticulier(nom,prenom,login,password);
-                }else if(type_Compte.equals("Professionnel")){
+                }else if(type_Utilisateur.equals("Professionnel")){
                    u_ = new UtilisateurProfessionel(nom,prenom,login,password);
                 }else{
                    u_ = new UtilisateurEntity(nom, prenom, login, password);
@@ -113,6 +113,7 @@ public class BanqueController {
         
     }
     
+    
     @RequestMapping(value="connect", method=RequestMethod.POST)
     ModelAndView connect(HttpServletRequest request)
     {
@@ -128,6 +129,9 @@ public class BanqueController {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("utilisateur",u);
                     ModelAndView mv = new ModelAndView("accueilbanque");
+                    mv.addObject("loginName", login);
+                    String identite = u.getNom() + " " + u.getPrenom();
+                    mv.addObject("utilisateurname", identite);
                     return mv;
                 }
                 else {
@@ -148,6 +152,9 @@ public class BanqueController {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("conseiller",c);
                     ModelAndView mv = new ModelAndView("accueilconseiller");
+                    mv.addObject("loginName", login);
+                    String identite = c.getNom() + " " + c.getPrenom();
+                    mv.addObject("conseillername", identite);
                     return mv;
                 }
                 else {
@@ -176,6 +183,29 @@ public class BanqueController {
         
         ModelAndView mv = new ModelAndView("sign");
         return mv;
+    }
+    
+    @RequestMapping(value="affichagecomptes", method=RequestMethod.GET)
+    String initAffichage()
+    {
+        return "affichagecomptes";
+    }
+    
+    @RequestMapping (value="affichagecomptes", method=RequestMethod.POST)
+    protected ModelAndView handleAffichageComptes(HttpServletRequest request, HttpServletResponse response) throws Exception {
+            HttpSession session = request.getSession(true);
+            
+            UtilisateurEntity u = (UtilisateurEntity)session.getAttribute("utilisateur");
+            if(u!=null){
+                ModelAndView mv = new ModelAndView("displaycomptes");
+                String listescomptes = uService.printComptes(u.getLogin());  ;
+                mv.addObject("listeKeepers", listescomptes);
+                return mv;
+            }
+            return null; 
+            
+           
+            
     }
     
 }

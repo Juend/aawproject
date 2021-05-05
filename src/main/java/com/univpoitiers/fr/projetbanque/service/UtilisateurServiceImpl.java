@@ -5,6 +5,7 @@
  */
 package com.univpoitiers.fr.projetbanque.service;
 
+import com.univpoitiers.fr.projetbanque.dao.CompteEntity;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurDAO;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurEntity;
 import java.util.ArrayList;
@@ -68,4 +69,33 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public List<UtilisateurEntity> getUsers() {
         return dao.findAll();
     }
+    
+    @Override
+    public String printComptes(String login)
+    {
+        String result = "";
+        UtilisateurEntity u = dao.findByLogin(login).get(0);
+										
+        float solde;
+        String color; 
+        List<CompteEntity> comptes = u.getComptes();
+        for(int j=0;j<comptes.size();j++){
+                                                                                            
+            solde = comptes.get(j).getSolde();
+            if(solde>0.0){
+                color ="success";
+            }else{
+                color ="danger";
+            }
+            result += "<li class=\"list-group-item d-flex justify-content-between align-items-center\">";
+            result += comptes.get(j).getType().toString();
+            result +="<span class=\"badge badge-"+color +"badge-pill\">"+ comptes.get(j).getSolde() +"€</span>" ;
+            result += "<form action=\"afficheope\" method=\"post\">"; 
+            result += "<input name=\"id_compte\" type=\"hidden\" value=\" "+comptes.get(j).getId().toString() + "\">";
+            result +="<button type=\"submit\" class=\"btn btn-light\">Voir les operations de ce compte </button></form></li>";
+        }
+                
+        return result;
+    }
+    
 }

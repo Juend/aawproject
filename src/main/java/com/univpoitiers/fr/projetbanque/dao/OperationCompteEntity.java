@@ -6,6 +6,7 @@
 package com.univpoitiers.fr.projetbanque.dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,12 +37,67 @@ public class OperationCompteEntity implements Serializable {
     @Column 
     private float somme;
     
+    @Column
+    private Date dateOp; 
+
     
 
+    public OperationCompteEntity(String type_operation, String actionnaire, String beneficiaire, float somme) {
+        this.type_operation = type_operation;
+        this.actionnaire = actionnaire;
+        this.beneficiaire = beneficiaire;
+        this.somme = somme;
+        this.dateOp = new Date();
+    }
+    
+    public OperationCompteEntity(String type_operation, String actionnaire, String beneficiaire, float somme, Date dateOp) {
+        this.type_operation = type_operation;
+        this.actionnaire = actionnaire;
+        this.beneficiaire = beneficiaire;
+        this.somme = somme;
+        this.dateOp = dateOp;
+    }
+    
+    public String getType_operation() {
+        return type_operation;
+    }
+
+    public void setType_operation(String type_operation) {
+        this.type_operation = type_operation;
+    }
+
+    public String getActionnaire() {
+        return actionnaire;
+    }
+
+    public void setActionnaire(String actionnaire) {
+        this.actionnaire = actionnaire;
+    }
+
+    public String getBeneficiaire() {
+        return beneficiaire;
+    }
+
+    public void setBeneficiaire(String beneficiaire) {
+        this.beneficiaire = beneficiaire;
+    }
+
+    public float getSomme() {
+        return somme;
+    }
+
+    public void setSomme(float somme) {
+        this.somme = somme;
+    }
+    
+    public Date getDateOp(){
+        return this.dateOp;
+    }
+    
     public Long getId() {
         return id;
     }
-
+    
     public void setId(Long id) {
         this.id = id;
     }

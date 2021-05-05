@@ -66,8 +66,8 @@ public class ConseillerDAOImpl implements ConseillerDAO {
     @Transactional(readOnly = true)
     @Override
     public List<ConseillerEntity> findByLogin(String login) {
-        Query q = em.createQuery("SELECT c FROM ConseillerEntity c WHERE c.login = ?")
-                .setParameter(1, login);
+        Query q = em.createQuery("SELECT c FROM ConseillerEntity c WHERE c.login = :value")
+                .setParameter("value", login);
         return q.getResultList();}
     
 }
