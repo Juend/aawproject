@@ -191,15 +191,35 @@ public class BanqueController {
         } 
     }
     
-    @RequestMapping(value="createcompte", method=RequestMethod.POST)
-    ModelAndView createCompte(HttpServletRequest request)
+    @RequestMapping(value="createnewcompte", method=RequestMethod.GET)
+    String initCreateNewCompte()
+    {
+        return "createcompte";
+    }
+    
+    @RequestMapping(value="createnewcompte", method=RequestMethod.POST)
+    ModelAndView createNewCompte(HttpServletRequest request)
     {
         HttpSession session = request.getSession(true);
+        String type_compte = request.getParameter("type_compte");
+        String sommeOuverture = request.getParameter("sommeOuverture");
+        
         
         UtilisateurEntity u = (UtilisateurEntity)session.getAttribute("utilisateur");
             if(u!=null){
                 ModelAndView mv = new ModelAndView("createcompte");
-                 CompteEntity cpt = new CompteEntity(0.f, typeCompte.PEL);
+                
+                if(type_compte !=null && sommeOuverture != null){
+                    CompteEntity cpt = new CompteEntity(0.f, typeCompte.PEL);
+                    cptService.addCompte(cpt);
+                    
+                    u.addCompte(cpt);
+                    uService.updateUser(u);
+                }
+                
+                mv.addObject("loginName", u.getLogin());
+                mv.addObject("listescomptes", cptService.printSelectTypeCompte());
+                
                 return mv;
             }
             return null; 

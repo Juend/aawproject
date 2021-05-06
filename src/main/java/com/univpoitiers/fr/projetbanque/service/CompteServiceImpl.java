@@ -8,6 +8,7 @@ package com.univpoitiers.fr.projetbanque.service;
 import com.univpoitiers.fr.projetbanque.dao.CompteDAO;
 import com.univpoitiers.fr.projetbanque.dao.CompteEntity;
 import com.univpoitiers.fr.projetbanque.dao.OperationCompteEntity;
+import com.univpoitiers.fr.projetbanque.dao.typeCompte;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -101,6 +102,18 @@ public class CompteServiceImpl implements CompteService {
         }
                 
         return result;
+    }
+
+    @Override
+    public String printSelectTypeCompte() {
+        String result ="";
+        typeCompte[] typesCompte= typeCompte.values();
+        
+        for (int i =0 ; i<typesCompte.length; i++) {
+            result ="<option value=\""+typesCompte[i].name()+"\">" + typesCompte[i].name() +"</option>";
+        }
+        
+        return result;    
     }
 
 

@@ -17,6 +17,9 @@ public interface UtilisateurService {
     // Methode pour ajouter un utilisateur
     public Boolean addUser(UtilisateurEntity u);
     
+    // Methode pour mettre a jour  un utilisateur
+    public Boolean updateUser(UtilisateurEntity u);
+    
     // Méthode qui renvoi un utilisateur s'il existe (renvoi null sinon
     public UtilisateurEntity getUser(UtilisateurEntity u);
     

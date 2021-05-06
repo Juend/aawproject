@@ -56,14 +56,33 @@
                 <div class="container-fluid">
                     <div class="row justify-content-md-center m-t-25">
                         <div class="col-md-12 order-md-4 mb-8 ">
-                            <div class="row justify-content-md-center m-t-25" >
-                                <h1 > Bienvenue ${Utilisateurname} </h1>
-                            </div>
                             <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
                                 <div  class="col-md-8 order-md-4 mb-8 " >
-                                    <ul class="list-group">
-                                    
-                                    </ul>
+                                    <div class="card text-center"  >
+                                        <div class="card-body">
+                                            <div class = "card-text">
+                                                <form method="POST" ACTION="createnewcompte.htm">
+                                                    <div class="form-group row">
+                                                        <label for="type_compte" class="col-sm-5 col-form-label">Type Compte : </label>
+                                                        <select name="type_compte" id="type_compte" class="custom-select">
+                                                            <option selected disabled>Choisir le type de compte</option>
+                                                            {$listescomptes}
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="sommeOuverture" class="col-sm-5 col-form-label">Somme a deposer : </label>
+                                                        <div class="col-sm-7">
+                                                            <input type="text" class="form-control" id="sommeOuverture" name="sommeOuverture" >
+                                                        </div> 
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary" value="OK">Soumettre</button> 
+                                                </form>
+                                            </div>                        
+                                        </div>
+                                        <div class= "card-footer">
+                                            <div class="alert alert-danger" role="alert">${submitMessage}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

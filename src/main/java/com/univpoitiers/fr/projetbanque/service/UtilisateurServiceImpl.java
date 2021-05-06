@@ -35,6 +35,15 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
     
     @Override
+    public Boolean updateUser(UtilisateurEntity u){
+       if(dao.find(u.getId())!= null){
+            dao.update(u);
+            return true; 
+        }
+        return false; 
+    }
+    
+    @Override
     public UtilisateurEntity getUser(UtilisateurEntity u)
     {
        List<UtilisateurEntity> utilisateurs = dao.findAll();

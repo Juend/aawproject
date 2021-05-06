@@ -33,4 +33,7 @@ public interface CompteService {
     
     //Méthode pour afficher les operations d'un compte
     public String printOperations(Long id);
+    
+    //Méthode pour afficher un select avec les types de comptes
+    public String printSelectTypeCompte();
 }

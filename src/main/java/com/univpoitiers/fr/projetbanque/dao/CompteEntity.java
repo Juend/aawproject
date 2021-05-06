@@ -34,7 +34,7 @@ public class CompteEntity implements Serializable {
     
     
     @Column 
-    private typeCompte type; 
+    private String type; 
     
     
     @ManyToOne
@@ -54,12 +54,12 @@ public class CompteEntity implements Serializable {
 
     public CompteEntity() {
         this.solde = 0.f;
-        this.type = typeCompte.COURANT; 
+        this.type = typeCompte.COURANT.toString(); ;
     }
     
     public CompteEntity(float solde, typeCompte type) {
         this.solde = solde;
-        this.type = type; 
+        this.type = type.toString(); 
     }
 
     public float getSolde() {
@@ -71,11 +71,11 @@ public class CompteEntity implements Serializable {
     }
 
     public typeCompte getType() {
-        return type;
+        return typeCompte.valueOf(type);
     }
 
     public void setType(typeCompte type) {
-        this.type = type;
+        this.type = type.toString();
     }
 
     
