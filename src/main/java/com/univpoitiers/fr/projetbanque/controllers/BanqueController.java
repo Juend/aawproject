@@ -7,6 +7,7 @@ package com.univpoitiers.fr.projetbanque.controllers;
 
 import com.univpoitiers.fr.projetbanque.dao.CompteEntity;
 import com.univpoitiers.fr.projetbanque.dao.ConseillerEntity;
+import com.univpoitiers.fr.projetbanque.dao.OperationCompteEntity;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurEntity;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurParticulier;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurProfessionel;
@@ -76,7 +77,7 @@ public class BanqueController {
     @RequestMapping(value="disconnect", method=RequestMethod.GET)
     String initDisconnect()
     {
-        return "disconnect";
+        return "sign";
     }
     
     @RequestMapping(value="signIn", method=RequestMethod.POST)
@@ -261,5 +262,159 @@ public class BanqueController {
             }
             return null;        
     }
+    
+    @RequestMapping(value="transferts", method=RequestMethod.GET)
+    String initTransfert()
+    {
+        return "accueilbanque";
+    }
+    
+    @RequestMapping (value="transferts", method=RequestMethod.POST)
+    protected ModelAndView handleTransferts(HttpServletRequest request, HttpServletResponse response) throws Exception {
+            HttpSession session = request.getSession(true);
+            
+            
+            UtilisateurEntity u = (UtilisateurEntity)session.getAttribute("utilisateur");
+            if(u!=null){
+                ModelAndView mv = new ModelAndView("transfertintercompte");
+                
+                String listeComptesSelect = uService.printSelectComptes(u.getLogin());
+                
+                mv.addObject("listes_comptes_cred",listeComptesSelect);
+                mv.addObject("listes_comptes_deb", listeComptesSelect);
+                mv.addObject("loginName", u.getLogin());
+                return mv;
+            }
+            return null;        
+    }
+    
+    @RequestMapping(value="opetransferts", method=RequestMethod.GET)
+    String initOpeTransfert()
+    {
+        return "transferts";
+    }
+    
+    @RequestMapping (value="opetransferts", method=RequestMethod.POST)
+    protected ModelAndView handleOperationTransferts(HttpServletRequest request, HttpServletResponse response) throws Exception {
+            HttpSession session = request.getSession(true);
+            
+            Long id_compte_deb = Long.parseLong(request.getParameter("id_compte_deb"));
+            Long id_compte_cred =Long.parseLong(request.getParameter("id_compte_cred")) ;
+            Float somme = Float.parseFloat(request.getParameter("somme"));
+            String name_ope = request.getParameter("nom_ope");
+            
+            ModelAndView mv = new ModelAndView("transfertintercompte");
+            
+            
+            UtilisateurEntity u = (UtilisateurEntity)session.getAttribute("utilisateur");
+            if(u!=null){
+                String listeComptesSelect = uService.printSelectComptes(u.getLogin());
+                mv.addObject("listes_comptes_cred",listeComptesSelect);
+                mv.addObject("listes_comptes_deb", listeComptesSelect);
+                mv.addObject("loginName", u.getLogin());
+                
+                if(id_compte_cred != null && id_compte_deb !=null && somme !=null && name_ope !=null){
+                    OperationCompteEntity op = new OperationCompteEntity(name_ope, cptService.findCompteId(id_compte_deb).getType().toString(), cptService.findCompteId(id_compte_cred).getType().toString(), somme);
+                    opeService.addOperationCompte(op);
+                    
+                    cptService.findCompteId(id_compte_deb).addOperation(op);
+                    cptService.findCompteId(id_compte_deb).retrieveMoney(somme);
+                    cptService.updateCompte(cptService.findCompteId(id_compte_deb));
+                    
+                    cptService.findCompteId(id_compte_cred).addOperation(op);
+                    cptService.findCompteId(id_compte_cred).gainMoney(somme);
+                    cptService.updateCompte(cptService.findCompteId(id_compte_cred));
+                    
+                    return mv; 
+                }else{
+                    mv.addObject("submitMessage", "Merci de remplir tout les champs du formulaire ");
+                    return mv;
+                }
+                
+                
+                
+                
+            }
+            return null;        
+    }
+    
+    @RequestMapping(value="opesconseiller", method=RequestMethod.GET)
+    String initOpesConseiller()
+    {
+        return "affichagecomptesconseiller";
+    }
+    
+    @RequestMapping (value="opesconseiller", method=RequestMethod.POST)
+    protected ModelAndView handleOpesConseiller(HttpServletRequest request, HttpServletResponse response) throws Exception {
+            String id_compte = request.getParameter("id_compte");
+            HttpSession session = request.getSession(true);
+            
+            
+            ConseillerEntity c = (ConseillerEntity)session.getAttribute("conseiller");
+            if(c!=null){
+                ModelAndView mv = new ModelAndView("transfertconseiller");
+                CompteEntity cpt = cptService.findCompteId(Long.parseLong(id_compte));
+                
+                mv.addObject("typeCompte",cpt.getType().toString());
+                mv.addObject("loginUtilisateur",cpt.getUtilisateur().getLogin());
+                mv.addObject("nomUtilisateur",cpt.getUtilisateur().getNom());
+                mv.addObject("prenomUtilisateur",cpt.getUtilisateur().getPrenom());
+                mv.addObject("loginName", c.getLogin());
+                return mv;
+            }
+            return null;        
+    }
+    
+    @RequestMapping(value="transfertConseiller", method=RequestMethod.GET)
+    String transfertConseiller()
+    {
+        return "transfertConseiller";
+    }
+    
+    @RequestMapping (value="transfertConseiller", method=RequestMethod.POST)
+    protected ModelAndView handleTransfertConseiller(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String nom_operation = request.getParameter("nom_operation");
+        String somme = request.getParameter("somme");
+        String id_compte = request.getParameter("id_compte");
+        HttpSession session = request.getSession(true);
+            
+        ConseillerEntity c = (ConseillerEntity)session.getAttribute("conseiller");
+            if(c!=null){
+                ModelAndView mv = new ModelAndView("transfertconseiller");
+                CompteEntity cpt = cptService.findCompteId(Long.parseLong(id_compte));
+                
+                if(nom_operation != null && somme != null){
+                    OperationCompteEntity op = new OperationCompteEntity(nom_operation, cpt.getType().toString(), "Banque", -(Float.parseFloat(somme)));
+                    
+                    opeService.addOperationCompte(op);
+                    
+                    cpt.addOperation(op);
+                    cpt.retrieveMoney(Float.parseFloat(somme));
+                    cptService.updateCompte(cpt);
+                    
+                    mv.addObject("id_compte",id_compte);
+                    mv.addObject("typeCompte",cpt.getType().toString());
+                    mv.addObject("loginUtilisateur",cpt.getUtilisateur().getLogin());
+                    mv.addObject("nomUtilisateur",cpt.getUtilisateur().getNom());
+                    mv.addObject("prenomUtilisateur",cpt.getUtilisateur().getPrenom());
+                    mv.addObject("loginName", c.getLogin());
+                    return mv;
+                }else{
+                    mv.addObject("id_compte",id_compte);
+                    mv.addObject("typeCompte",cpt.getType().toString());
+                    mv.addObject("loginUtilisateur",cpt.getUtilisateur().getLogin());
+                    mv.addObject("nomUtilisateur",cpt.getUtilisateur().getNom());
+                    mv.addObject("prenomUtilisateur",cpt.getUtilisateur().getPrenom());
+                    mv.addObject("loginName", c.getLogin());
+                    mv.addObject("submitMessage", "Merci de compléter tout les champs");
+                    return mv; 
+                }
+                
+                
+                
+            }
+            return null;        
+    }
+    
     
 }

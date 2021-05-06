@@ -74,7 +74,7 @@ public class ConseillerServiceImpl implements ConseillerService {
             result += comptes.get(j).getType().toString();
             result += " de " + comptes.get(j).getUtilisateur().getLogin();
             result +="<span class=\"badge badge-"+color +"badge-pill\">"+ comptes.get(j).getSolde() +"€</span>" ;
-            result += "<form action=\"reaopeconseiller\" method=\"post\">"; 
+            result += "<form action=\"opesconseiller\" method=\"post\">"; 
             result += "<input name=\"id_compte\" type=\"hidden\" value=\" "+comptes.get(j).getId().toString() + "\">";
             result +="<button type=\"submit\" class=\"btn btn-light\">Realiser une operation sur ce compte </button></form></li>";
         }

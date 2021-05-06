@@ -16,6 +16,9 @@ public interface CompteService {
     // Methode pour ajouter un compte
     public Boolean addCompte(CompteEntity c);
     
+    // Methode pour mettre a jour un compte
+    public Boolean updateCompte(CompteEntity c);
+    
     // Méthode qui renvoi un compte s'il existe (renvoi null sinon
     public CompteEntity getCompte(CompteEntity c);
     

@@ -36,11 +36,6 @@ public class CompteEntity implements Serializable {
     @Column 
     private typeCompte type; 
     
-    @Column 
-    private static  final float plafond = 1500.f; 
-    
-    @Column 
-    private static final float taux = 0.5f;
     
     @ManyToOne
     @JoinColumn(name="user_fk")
@@ -116,6 +111,14 @@ public class CompteEntity implements Serializable {
     
     public void setOperations(List<OperationCompteEntity> operations) {
         this.operations = operations;
+    }
+    
+    public void retrieveMoney(float d){
+        this.solde -= d;
+    } 
+    
+    public void gainMoney(float d){
+        this.solde += d;
     }
     
     @Override

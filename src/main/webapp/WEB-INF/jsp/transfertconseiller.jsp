@@ -1,6 +1,6 @@
 <%-- 
-    Document   : acceuilbanque
-    Created on : 16 mars 2021, 17:57:33
+    Document   : transfertconseiller
+    Created on : 6 mai 2021, 03:01:09
     Author     : Justine ENOND 
 --%>
 
@@ -15,6 +15,7 @@
 
     <body>
         <header> 
+            <!-- Ici mettre une icône vite fait de ETU BAnQ -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">ETU'BANQUE</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,16 +25,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <a class="nav-link" href="accueilbanque.htm">Accueil <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="accueilconseiller.htm">Accueil <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="affichagecomptes.htm">Comptes</a>
-                    </li>                   
-                    <li class="nav-item">
-                      <a class="nav-link " href="transferts.htm">Transferts</a>
+                      <a class="nav-link" href="affichagecomptesconseiller.htm">Gérer Comptes</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link " href="#">Conseiller</a>
+                      <a class="nav-link " href="#">Messages</a>
                     </li>
                   </ul>
                   <ul class="navbar-nav   my-lg-0">
@@ -57,44 +55,36 @@
                     <div class="row justify-content-md-center m-t-25">
                         <div class="col-md-12 order-md-4 mb-8 ">
                             <div class="row justify-content-md-center m-t-25" >
-                                <h1 > Bienvenue ${utilisateurname} </h1>
+                                <h1 > Operations du comptes {$typeCompte} de {$loginUtilisateur} </h1>
+                                <h3> ({$nomUtilisateur},{$prenomUtilisateur}) :</h3>
                             </div>
                             <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
                                 <div  class="col-md-8 order-md-4 mb-8 " >
-                                    <ul class="list-group">
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Ouvrir un compte 
-                                            <form method="POST" ACTION="createcompte.htm">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">></span>
-                                            </button>
-                                            </form>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Voir mes comptes
-                                            <form method="POST" ACTION="affichagecomptes.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Realiser des transferts
-                                            <form method="POST" ACTION="transferts.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Envoyer un message a mon conseiller
-                                            <form method="POST" ACTION="afficheCompte.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                      </ul>
+                                    <div class="card text-center"  >
+                                        <div class="card-body">
+                                            <div class = "card-text">
+                                                <form method="POST" ACTION="opeConseiller.htm">
+                                                    <div class="form-group row">
+                                                        <label for="nom_operation" class="col-sm-5 col-form-label">Nom operation : </label>
+                                                        <div class="col-sm-7">
+                                                            <input type="text" class="form-control" id="nom_operation" name="nom_operation" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="somme" class="col-sm-5 col-form-label">Somme a prelever : </label>
+                                                        <div class="col-sm-7">
+                                                            <input type="text" class="form-control" id="somme" name="somme" >
+                                                        </div> 
+                                                    </div>
+                                                    <input name="id_compte" type="hidden" value={$id_compte}>
+                                                    <button type="submit" class="btn btn-primary" value="OK">Soumettre</button> 
+                                                </form>
+                                            </div>                        
+                                        </div>
+                                        <div class= "card-footer">
+                                            <div class="alert alert-danger" role="alert">${submitMessage}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -30,7 +30,7 @@
                       <a class="nav-link" href="affichagecomptes.htm">Comptes</a>
                     </li>                   
                     <li class="nav-item">
-                      <a class="nav-link " href="#">Transferts</a>
+                      <a class="nav-link " href="transferts.htm">Transferts</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link " href="#">Conseiller</a>

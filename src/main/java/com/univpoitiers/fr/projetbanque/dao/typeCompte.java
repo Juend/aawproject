@@ -9,5 +9,5 @@ package com.univpoitiers.fr.projetbanque.dao;
  *
  * @author Justine ENOND
  */
-public enum typeCompte {COURANT, PEL,EPARGNE};
+public enum typeCompte {COURANT, PEL, LIVRET_A,Codevi, LIVRET_JEUNE, CEL, LEP, LDDS, PERP, Perco, PEA};
 

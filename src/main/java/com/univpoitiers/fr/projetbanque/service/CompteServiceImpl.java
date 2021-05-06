@@ -30,6 +30,15 @@ public class CompteServiceImpl implements CompteService {
         }
         return false; 
     }
+    
+    @Override
+    public Boolean updateCompte(CompteEntity c) {
+        if(dao.find(c.getId())!= null){
+            dao.update(c);
+            return true; 
+        }
+        return false;
+    }
 
     @Override
     public CompteEntity getCompte(CompteEntity c) {
@@ -93,5 +102,7 @@ public class CompteServiceImpl implements CompteService {
                 
         return result;
     }
+
+
     
 }

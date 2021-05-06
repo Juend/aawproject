@@ -1,6 +1,6 @@
 <%-- 
-    Document   : acceuilbanque
-    Created on : 16 mars 2021, 17:57:33
+    Document   : transfertintercompte
+    Created on : 6 mai 2021, 03:01:19
     Author     : Justine ENOND 
 --%>
 
@@ -15,7 +15,7 @@
 
     <body>
         <header> 
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">ETU'BANQUE</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <a class="nav-link" href="accueilbanque.htm">Accueil <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="accueil.htm">Accueil <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="affichagecomptes.htm">Comptes</a>
@@ -39,7 +39,7 @@
                   <ul class="navbar-nav   my-lg-0">
                   <li class="nav-item dropdown my-2 my-lg-0">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      ${loginName}
+                        ${loginName}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="disconnect.htm">Deconnexion</a>
@@ -57,44 +57,48 @@
                     <div class="row justify-content-md-center m-t-25">
                         <div class="col-md-12 order-md-4 mb-8 ">
                             <div class="row justify-content-md-center m-t-25" >
-                                <h1 > Bienvenue ${utilisateurname} </h1>
+                                <h1 > Transfert inter-comptes :  </h1>
                             </div>
                             <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
                                 <div  class="col-md-8 order-md-4 mb-8 " >
-                                    <ul class="list-group">
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Ouvrir un compte 
-                                            <form method="POST" ACTION="createcompte.htm">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">></span>
-                                            </button>
-                                            </form>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Voir mes comptes
-                                            <form method="POST" ACTION="affichagecomptes.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Realiser des transferts
-                                            <form method="POST" ACTION="transferts.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Envoyer un message a mon conseiller
-                                            <form method="POST" ACTION="afficheCompte.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                      </ul>
+                                    <div class="card text-center"  >
+                                        <div class="card-body">
+                                            <div class = "card-text">
+                                                <form method="POST" ACTION="opetransferts.htm">
+                                                    <div class="form-group row">
+                                                        <label for="nom_ope" class="col-sm-5 col-form-label">Nom de l'operation : </label>
+                                                        <div class="col-sm-7">
+                                                            <input type="text" class="form-control" id="nom_ope" name="nom_ope" >
+                                                        </div> 
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="id_compte_deb" class="col-sm-5 col-form-label"> Actionnaire : </label>
+                                                        <select name="id_compte_deb" id="id_compte_deb" class="custom-select">
+                                                            <option selected disabled>Choisir le compte à debiter</option>
+                                                            {$listes_comptes_deb}
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="id_compte_cred" class="col-sm-5 col-form-label">Beneficiaire : </label>
+                                                        <select name="id_compte_cred" id="id_compte_cred" class="custom-select">
+                                                            <option selected disabled>Choisir le compte à créditer</option>
+                                                            {$listes_comptes_cred}
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="somme" class="col-sm-5 col-form-label">Somme a prelever : </label>
+                                                        <div class="col-sm-7">
+                                                            <input type="text" class="form-control" id="somme" name="somme" >
+                                                        </div> 
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary" value="OK">Soumettre</button> 
+                                                </form>
+                                            </div>                        
+                                        </div>
+                                        <div class= "card-footer">
+                                            <div class="alert alert-danger" role="alert">${submitMessage}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

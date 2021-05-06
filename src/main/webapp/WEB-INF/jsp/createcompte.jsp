@@ -30,7 +30,7 @@
                       <a class="nav-link" href="affichagecomptes.htm">Comptes</a>
                     </li>                   
                     <li class="nav-item">
-                      <a class="nav-link " href="#">Transferts</a>
+                      <a class="nav-link " href="transferts.htm">Transferts</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link " href="#">Conseiller</a>
@@ -80,7 +80,7 @@
                                         </li>
                                         <li class="list-group-item list-group-item-action list-group-item-light">
                                             Realiser des transferts
-                                            <form method="POST" ACTION="afficheCompte.htm">
+                                            <form method="POST" ACTION="affichageCompte.htm">
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                         <span aria-hidden="true">></span>
                                                 </button>
@@ -88,9 +88,9 @@
                                         </li>
                                         <li class="list-group-item list-group-item-action list-group-item-light">
                                             Envoyer un message a mon conseiller
-                                            <form method="POST" ACTION="afficheCompte.htm">
+                                            <form method="POST" ACTION="transferts.htm">
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
+                                                        <span aria-hidden="true"> > </span>
                                                 </button>
                                             </form>
                                         </li>
