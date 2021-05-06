@@ -18,7 +18,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -53,6 +55,10 @@ public class UtilisateurEntity implements Serializable {
     
     @OneToMany(mappedBy="user")
     private List<CompteEntity> comptes = new ArrayList<CompteEntity>();
+    
+    @ManyToOne
+    @JoinColumn(name="conseiller_fk")
+    private ConseillerEntity conseiller; 
 
     public UtilisateurEntity(String nom, String prenom, String login, String password) {
         this.nom = nom;
@@ -135,6 +141,15 @@ public class UtilisateurEntity implements Serializable {
     public List<MessageConseillerUtilisateurEntity> getMessages(){
         return this.messages; 
     }
+
+    public ConseillerEntity getConseiller() {
+        return conseiller;
+    }
+
+    public void setConseiller(ConseillerEntity conseiller) {
+        this.conseiller = conseiller;
+    }
+    
     
     @Override
     public int hashCode() {

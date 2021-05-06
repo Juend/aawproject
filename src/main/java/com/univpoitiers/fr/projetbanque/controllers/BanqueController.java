@@ -11,6 +11,7 @@ import com.univpoitiers.fr.projetbanque.dao.OperationCompteEntity;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurEntity;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurParticulier;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurProfessionel;
+import com.univpoitiers.fr.projetbanque.dao.typeCompte;
 import com.univpoitiers.fr.projetbanque.service.CompteService;
 import com.univpoitiers.fr.projetbanque.service.ConseillerService;
 import com.univpoitiers.fr.projetbanque.service.OperationCompteService;
@@ -78,6 +79,12 @@ public class BanqueController {
     String initDisconnect()
     {
         return "sign";
+    }
+    
+    @RequestMapping(value="createcompte", method=RequestMethod.GET)
+    String initCreateCompte()
+    {
+        return "createcompte";
     }
     
     @RequestMapping(value="signIn", method=RequestMethod.POST)
@@ -182,6 +189,25 @@ public class BanqueController {
             mv.addObject("connectMessage", "Erreur : Ajouter un type de Compte");
             return mv;
         } 
+    }
+    
+    @RequestMapping(value="createcompte", method=RequestMethod.POST)
+    ModelAndView createCompte(HttpServletRequest request)
+    {
+        HttpSession session = request.getSession(true);
+        
+        UtilisateurEntity u = (UtilisateurEntity)session.getAttribute("utilisateur");
+            if(u!=null){
+                ModelAndView mv = new ModelAndView("createcompte");
+                 CompteEntity cpt = new CompteEntity(0.f, typeCompte.PEL);
+                return mv;
+            }
+            return null; 
+        
+        
+        
+        
+       
     }
     
     @RequestMapping(value="disconnect", method=RequestMethod.POST)

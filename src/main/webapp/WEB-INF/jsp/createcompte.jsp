@@ -62,39 +62,8 @@
                             <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
                                 <div  class="col-md-8 order-md-4 mb-8 " >
                                     <ul class="list-group">
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Ouvrir un compte 
-                                            <form method="POST" ACTION="createCompte.htm">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">></span>
-                                            </button>
-                                            </form>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Voir mes comptes
-                                            <form method="POST" ACTION="afficheCompte.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Realiser des transferts
-                                            <form method="POST" ACTION="affichageCompte.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Envoyer un message a mon conseiller
-                                            <form method="POST" ACTION="transferts.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true"> > </span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                      </ul>
+                                    
+                                    </ul>
                                 </div>
                             </div>
                         </div>

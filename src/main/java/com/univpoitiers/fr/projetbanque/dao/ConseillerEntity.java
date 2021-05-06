@@ -41,6 +41,9 @@ public class ConseillerEntity implements Serializable {
     private String password; 
     
     @OneToMany(mappedBy="conseiller")
+    private List<UtilisateurEntity> utilisateurs;
+    
+    @OneToMany(mappedBy="conseiller")
     private List<MessageConseillerUtilisateurEntity> messages; 
     
     @OneToMany(mappedBy="conseiller")
@@ -52,6 +55,7 @@ public class ConseillerEntity implements Serializable {
         this.login = ""; 
         this.password = "";
         this.messages = new ArrayList<MessageConseillerUtilisateurEntity>();
+        this.utilisateurs = new ArrayList<UtilisateurEntity>();
     }
     
     public ConseillerEntity(String login, String mdp) {
@@ -60,8 +64,18 @@ public class ConseillerEntity implements Serializable {
         this.login = login; 
         this.password = mdp;       
         this.messages = new ArrayList<MessageConseillerUtilisateurEntity>();
+        this.utilisateurs = new ArrayList<UtilisateurEntity>();
     }
 
+    public ConseillerEntity(String nom, String prenom, String login, String password) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.login = login; 
+        this.password = password;
+        this.messages = new ArrayList<MessageConseillerUtilisateurEntity>();
+        this.utilisateurs = new ArrayList<UtilisateurEntity>();
+    }
+    
     public String getLogin() {
         return login;
     }
@@ -77,15 +91,6 @@ public class ConseillerEntity implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public ConseillerEntity(String nom, String prenom, String login, String password) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.login = login; 
-        this.password = password;
-        this.messages = new ArrayList<MessageConseillerUtilisateurEntity>();
-    }
-    
     
     public Long getId() {
         return id;
@@ -130,6 +135,15 @@ public class ConseillerEntity implements Serializable {
     public void addCompte(CompteEntity compte){
         this.comptes.add(compte);
     }
+
+    public List<UtilisateurEntity> getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(List<UtilisateurEntity> utilisateurs) {
+        this.utilisateurs = utilisateurs;
+    }
+    
     
     @Override
     public int hashCode() {
