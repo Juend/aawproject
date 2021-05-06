@@ -27,4 +27,6 @@ public interface ConseillerService {
     
     // Méthode pour supprimer un conseiller
     public void removeConseiller(ConseillerEntity c);
+    
+    public String printComptes(String login);
 }

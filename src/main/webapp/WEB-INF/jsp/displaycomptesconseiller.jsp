@@ -1,6 +1,6 @@
 <%-- 
-    Document   : accueilconseiller
-    Created on : 4 mai 2021, 22:21:49
+    Document   : displaycomptesconseiller
+    Created on : 6 mai 2021, 02:20:14
     Author     : Justine ENOND 
 --%>
 
@@ -54,30 +54,15 @@
                 <div class="container-fluid">
                     <div class="row justify-content-md-center m-t-25">
                         <div class="col-md-12 order-md-4 mb-8 ">
-                            <div class="row justify-content-md-center m-t-25" >
-                                <h1 > Bienvenue ${conseillername} </h1>
-                            </div>
-                            <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
-                                <div  class="col-md-8 order-md-4 mb-8 " >
-                                    <ul class="list-group">
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Gérer les comptes
-                                            <form method="POST" ACTION="affichagecomptesconseiller.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action list-group-item-light">
-                                            Voir mes messages
-                                            <form method="POST" ACTION="afficheCompte.htm">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">></span>
-                                                </button>
-                                            </form>
-                                        </li>
-                                      </ul>
-                                </div>
+                          <div class="row justify-content-md-center m-t-25" >
+                            <h1 > Comptes :  </h1>
+                          </div>
+                          <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
+                            <div  class="col-md-8 order-md-4 mb-8 " >
+                                <ul class="list-group">
+                                    ${listescomptes}
+                                    
+                                </ul>
                             </div>
                         </div>
                     </div>

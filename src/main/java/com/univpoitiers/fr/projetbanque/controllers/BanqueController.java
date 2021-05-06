@@ -5,11 +5,14 @@
  */
 package com.univpoitiers.fr.projetbanque.controllers;
 
+import com.univpoitiers.fr.projetbanque.dao.CompteEntity;
 import com.univpoitiers.fr.projetbanque.dao.ConseillerEntity;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurEntity;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurParticulier;
 import com.univpoitiers.fr.projetbanque.dao.UtilisateurProfessionel;
+import com.univpoitiers.fr.projetbanque.service.CompteService;
 import com.univpoitiers.fr.projetbanque.service.ConseillerService;
+import com.univpoitiers.fr.projetbanque.service.OperationCompteService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,6 +37,11 @@ public class BanqueController {
     @Autowired
     ConseillerService cService; 
     
+    @Autowired
+    CompteService cptService; 
+    
+    @Autowired
+    OperationCompteService opeService;
     
     @RequestMapping(value="sign", method=RequestMethod.GET)
     String initSign()
@@ -186,9 +194,9 @@ public class BanqueController {
     }
     
     @RequestMapping(value="affichagecomptes", method=RequestMethod.GET)
-    String initAffichage()
+    String initAffichageComptesU()
     {
-        return "affichagecomptes";
+        return "accueilbanque";
     }
     
     @RequestMapping (value="affichagecomptes", method=RequestMethod.POST)
@@ -198,14 +206,60 @@ public class BanqueController {
             UtilisateurEntity u = (UtilisateurEntity)session.getAttribute("utilisateur");
             if(u!=null){
                 ModelAndView mv = new ModelAndView("displaycomptes");
-                String listescomptes = uService.printComptes(u.getLogin());  ;
-                mv.addObject("listeKeepers", listescomptes);
+                String listescomptes = uService.printComptes(u.getLogin());
+                mv.addObject("loginName", u.getLogin());
+                mv.addObject("listescomptes", listescomptes);
                 return mv;
             }
-            return null; 
+            return null;         
+    }
+    
+    @RequestMapping(value="affichagecomptesconseiller", method=RequestMethod.GET)
+    String initAffichageComptesC()
+    {
+        return "accueilconseiller";
+    }
+    
+    @RequestMapping (value="affichagecomptesconseiller", method=RequestMethod.POST)
+    protected ModelAndView handleAffichageComptesConseiller(HttpServletRequest request, HttpServletResponse response) throws Exception {
+            HttpSession session = request.getSession(true);
             
-           
+            ConseillerEntity c = (ConseillerEntity)session.getAttribute("conseiller");
+            if(c!=null){
+                ModelAndView mv = new ModelAndView("displaycomptesconseiller");
+                String listescomptes = uService.printComptes(c.getLogin());
+                mv.addObject("loginName", c.getLogin());
+                mv.addObject("listescomptes", listescomptes);
+                return mv;
+            }
+            return null;         
+    }
+    
+    
+    @RequestMapping(value="afficheope", method=RequestMethod.GET)
+    String initAffichageOperations()
+    {
+        return "affichagecomptes";
+    }
+    
+    @RequestMapping (value="afficheope", method=RequestMethod.POST)
+    protected ModelAndView handleAffichageOperations(HttpServletRequest request, HttpServletResponse response) throws Exception {
+            String id_compte = request.getParameter("id_compte");
+            HttpSession session = request.getSession(true);
             
+            
+            UtilisateurEntity u = (UtilisateurEntity)session.getAttribute("utilisateur");
+            if(u!=null){
+                ModelAndView mv = new ModelAndView("displayop");
+                CompteEntity c = cptService.findCompteId(Long.parseLong(id_compte));
+                String listeoperations = cptService.printOperations(Long.parseLong(id_compte));
+                
+                mv.addObject("typeCompte",c.getType().toString());
+                mv.addObject("loginName", u.getLogin());
+                mv.addObject("operations", listeoperations);
+                return mv;
+            }
+            return null;        
     }
     
 }

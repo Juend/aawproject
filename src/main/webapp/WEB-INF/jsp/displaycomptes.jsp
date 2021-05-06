@@ -10,13 +10,12 @@
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="icon" type="image/x-icon" href="/assets/open-iconic/png/link-intact-8x.png" />
-        <title> Operations ETU'BANQUE</title>
+        <title>ETU'BANQUE</title>
     </head>
 
     <body>
         <header> 
-            <!-- Ici mettre une icône vite fait de ETU BAnQ -->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">ETU'BANQUE</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -57,15 +56,16 @@
                 <div class="container-fluid">
                     <div class="row justify-content-md-center m-t-25">
                         <div class="col-md-12 order-md-4 mb-8 ">
-                          <div class="row justify-content-md-center m-t-25" >
-                            <h1 > Comptes :  </h1>
-                          </div>
-                          <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
-                            <div  class="col-md-8 order-md-4 mb-8 " >
-                                <ul class="list-group">
-                                    ${listescomptes}
+                            <div class="row justify-content-md-center m-t-25" >
+                                <h1 > Comptes :  </h1>
+                            </div>
+                            <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
+                                <div  class="col-md-8 order-md-4 mb-8 " >
+                                    <ul class="list-group">
+                                        ${listescomptes}
                                     
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

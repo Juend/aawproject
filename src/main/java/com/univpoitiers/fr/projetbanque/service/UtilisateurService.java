@@ -31,4 +31,7 @@ public interface UtilisateurService {
     
     //Méthode pour afficher les comptes d'un utilisateur
     public String printComptes(String login);
+    
+    //Méthode pour afficher les comptes d'un utilisateur
+    public String printSelectComptes(String login);
 }

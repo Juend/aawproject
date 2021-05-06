@@ -96,13 +96,6 @@ public class CompteEntity implements Serializable {
         this.user = u; 
     }
     
-    public UtilisateurEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UtilisateurEntity user) {
-        this.user = user;
-    }
     
     public ConseillerEntity getConseiller() {
         return conseiller;
