@@ -223,11 +223,6 @@ public class BanqueController {
                 return mv;
             }
             return null; 
-        
-        
-        
-        
-       
     }
     
     @RequestMapping(value="disconnect", method=RequestMethod.POST)

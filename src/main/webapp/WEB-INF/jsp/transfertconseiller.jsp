@@ -55,8 +55,8 @@
                     <div class="row justify-content-md-center m-t-25">
                         <div class="col-md-12 order-md-4 mb-8 ">
                             <div class="row justify-content-md-center m-t-25" >
-                                <h1 > Operations du comptes {$typeCompte} de {$loginUtilisateur} </h1>
-                                <h3> ({$nomUtilisateur},{$prenomUtilisateur}) :</h3>
+                                <h1 > Operations du comptes ${typeCompte} de ${loginUtilisateur} </h1>
+                                <h3> (${nomUtilisateur},${prenomUtilisateur}) :</h3>
                             </div>
                             <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
                                 <div  class="col-md-8 order-md-4 mb-8 " >
@@ -76,7 +76,7 @@
                                                             <input type="text" class="form-control" id="somme" name="somme" >
                                                         </div> 
                                                     </div>
-                                                    <input name="id_compte" type="hidden" value={$id_compte}>
+                                                    <input name="id_compte" type="hidden" value="${id_compte}">
                                                     <button type="submit" class="btn btn-primary" value="OK">Soumettre</button> 
                                                 </form>
                                             </div>                        

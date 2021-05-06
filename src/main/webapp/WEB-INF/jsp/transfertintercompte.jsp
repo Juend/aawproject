@@ -75,14 +75,14 @@
                                                         <label for="id_compte_deb" class="col-sm-5 col-form-label"> Actionnaire : </label>
                                                         <select name="id_compte_deb" id="id_compte_deb" class="custom-select">
                                                             <option selected disabled>Choisir le compte à debiter</option>
-                                                            {$listes_comptes_deb}
+                                                            ${listes_comptes_deb}
                                                         </select>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="id_compte_cred" class="col-sm-5 col-form-label">Beneficiaire : </label>
                                                         <select name="id_compte_cred" id="id_compte_cred" class="custom-select">
                                                             <option selected disabled>Choisir le compte à créditer</option>
-                                                            {$listes_comptes_cred}
+                                                            ${listes_comptes_cred}
                                                         </select>
                                                     </div>
                                                     <div class="form-group row">

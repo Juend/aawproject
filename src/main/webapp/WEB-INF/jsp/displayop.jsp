@@ -57,7 +57,7 @@
                     <div class="row justify-content-md-center m-t-25">
                         <div class="col-md-12 order-md-4 mb-8 ">
                             <div class="row justify-content-md-center m-t-25" >
-                                <h1 > Operations du comptes {$typeCompte} :  </h1>
+                                <h1 > Operations du comptes ${typeCompte} :  </h1>
                             </div>
                             <div class="row justify-content-md-center m-t-25" style="padding-top: 30px;" >
                                 <div  class="col-md-12 order-md-4 mb-8 " >
@@ -72,7 +72,7 @@
                                             </tr>
 					</thead>
 					<tbody>
-                                            {$operations}
+                                            ${operations}
                                         </tbody>
                                     </table>
                                 </div>
